@@ -43,5 +43,25 @@ In this demo, I chose for separate models for each layer to provide an API that 
 Considering how identical the models are, we can also use AutoMapper to map between them.
 
 ### Package by Feature
+Packaging by feature has certain pros and cons as well as a few areas where the developers can make a choice.
+
+One of the advantages of packaging by feature is that developers can decide which architecture to adhere to within each slice/feature. In this demonstration, the Order slice does not have any other classes except for the Order model and the OrderController. If more business logic is added, developers might want to consider creating additional classes.
+
+**Encapsulation**
+As the shipping logic is also called from the Order slice, we decided to add a separate ShippingService. But again, only exposing the interface to maximize *encapsulation*.
+
+As the models are now separated, the shipping service cannot use the Order model inappropriately any more. Instead, the Shipping slice only asks for the order ID.
+
+Like packaging by layer, the Order slice still depends on the Shipping slice. This could be remedied by an event bus or a pub/sub pattern.
+
+**Testability**
+To make the internal implementations testable, we created a factory for the ShippingService. The OrderController can easily be tested directly.
+
+Now that the Shipping service is separated from the Order service, we no longer care about the exact shipment that is created in the Order service. Instead we only validate that we asked the Shipping slice to ship our product.
+
+In my opinion, the tests convey a better message than in the packaged by layer approach.
+
+**Models**
+Slices define their own models and are expected to carefully think what they expose to the outside (either as input parameters or as output values).
 
 
