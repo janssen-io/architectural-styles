@@ -17,8 +17,8 @@ The following four styles are demonstrated in this repository:
 ### Package by Layer
 This style packages the classes by their technological layer (Web App/Entry point, Services and Infrastructure).
 
-#### Architectural considerations
 Packaging by layer has certain pros and cons as well as a few areas where the developers can make a choice.
+
 
 **Encapsulation**
 To maximize encapsulation, each layer only exposes their interfaces.
@@ -64,4 +64,24 @@ In my opinion, the tests convey a better message than in the packaged by layer a
 **Models**
 Slices define their own models and are expected to carefully think what they expose to the outside (either as input parameters or as output values).
 
+### Hexagonal Architecture
+The hexagonal architecture looks like packaging by layer. The greatest change is the inversion of dependencies;the web and infrastructure layer both depend on the domain.
 
+This architecture has certain pros and cons as well as a few areas where the developers can make a choice.
+
+**Encapsulation**
+To maximize encapsulation, each layer only exposes their interfaces.
+
+Often this style exposes too much detail of models to different parts of the application.  While only the interfaces are exposed, the shipping and order services are tightly coupled.
+The order service needs to create the shipment and the shipping service requests the entire order model, even though it only needs the ID. This can be prevented by also packaging by feature.
+
+**Testability**
+To make the internal implementations testable we can either use the IServiceCollection or create a separate factory.
+
+The advantage of this style over packaging by layer is that the tests for the _domain_ have no dependency any more on the _infrastructure_.
+
+**Models**
+The models live in the _domain_ layer. Both the _web_ and _infrastructure_ layers use these models.
+
+In this demo, we chose for additional models in the _web_ layer to provide an API that can easily be versioned.
+Considering how identical the models are, we can also use AutoMapper to map between the _web_ and _domain_ models.
