@@ -12,7 +12,7 @@ The web API needs to support the following behavior:
 The source code also needs to be testable.
 
 ## Styles
-The following four styles are demonstrated in this repository:
+The following styles are demonstrated in this repository:
 
 ### Package by Layer
 This style packages the classes by their technological layer (Web App/Entry point, Services and Infrastructure).
