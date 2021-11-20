@@ -113,5 +113,7 @@ Also, in more complicated applications, I would personally use an in-process eve
 
 For more information about these styles and the ins and outs of them, I recommend watching Simon Brown's [Modular Monolith](https://www.youtube.com/watch?v=5OjqD-ow8GE) talk.
 
+His blog post about [Architecturally Aligned Testing](http://www.codingthearchitecture.com/2015/03/08/package_by_component_and_architecturally_aligned_testing.html) is also a great read and touches the subject of unit testing vertical slices/components. While I recommend reading the article, the short version is that you should not shoe-horn your entire project into one of these styles. "If you have a component that is sending asynchronous messages or using an external, third-party service, you'll probably still need to consider adding dependency injection points (e.g. ports and adapters) to adequately test the component".
+
 ## Questions?
 If you have any questions or feel like certain things are mispresented. Feel free to open an issue or a PR!
