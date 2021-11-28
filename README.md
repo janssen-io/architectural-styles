@@ -16,6 +16,8 @@ The following styles are demonstrated in this repository:
 ### Package by Layer
 This style packages the classes by their technological layer (Presentation, Services and Infrastructure).
 
+![architecture](./Layered/architecture.png)
+
 Packaging by layer has certain pros and cons as well as a few areas where the developers can make a choice.
 
 #### Encapsulation
@@ -40,8 +42,34 @@ Each layer has their own models. Alternatively, each layer could use the model o
 In this demo, I chose for separate models for each layer to provide an API that can easily be versioned.
 Considering how identical the models are, I can also use AutoMapper to map between them.
 
+### Hexagonal Architecture
+The hexagonal architecture looks like packaging by layer. The greatest change is the inversion of dependencies; the _presentation_ and _infrastructure_ layer both depend on the _domain_.
+
+![architecture](./Hexagonal/architecture.png)
+
+This architecture has certain pros and cons as well as a few areas where the developers can make a choice.
+
+#### Encapsulation
+To maximize encapsulation, each layer only exposes their interfaces.
+
+Often this style exposes too much detail of models to different parts of the application.  While only the interfaces are exposed, the shipping and order services are tightly coupled.
+The order service needs to create the shipment and the shipping service requests the entire order model, even though it only needs the ID. This can be prevented by also packaging by feature.
+
+#### Testability
+To make the internal implementations testable I can either use the IServiceCollection or create a separate factory.
+
+The advantage of this style over packaging by layer is that the tests for the _domain_ have no dependency any more on the _infrastructure_.
+
+#### Models
+The models live in the _domain_ layer. Both the _presentation_ and _infrastructure_ layers use these models.
+
+In this demo, I chose for additional models in the _presentation_ layer to provide an API that can easily be versioned.
+Considering how identical the models are, I can also use AutoMapper to map between the _web_ and _domain_ models.
+
 ### Package by Feature
 Packaging by feature has certain pros and cons as well as a few areas where the developers can make a choice.
+
+![architecture](./Sliced/architecture.png)
 
 One of the advantages of packaging by feature is that developers can decide which architecture to adhere to within each slice/feature. In this demonstration, the Order slice does not have any other classes except for the Order model and the OrderController. If more business logic is added, developers might want to consider creating additional classes.
 
@@ -64,30 +92,10 @@ Swapping out the data access for an in-memory database or mocked repository is u
 #### Models
 Slices define their own models and are expected to carefully think what they expose to the outside (either as input parameters or as output values).
 
-### Hexagonal Architecture
-The hexagonal architecture looks like packaging by layer. The greatest change is the inversion of dependencies; the _presentation_ and _infrastructure_ layer both depend on the _domain_.
-
-This architecture has certain pros and cons as well as a few areas where the developers can make a choice.
-
-#### Encapsulation
-To maximize encapsulation, each layer only exposes their interfaces.
-
-Often this style exposes too much detail of models to different parts of the application.  While only the interfaces are exposed, the shipping and order services are tightly coupled.
-The order service needs to create the shipment and the shipping service requests the entire order model, even though it only needs the ID. This can be prevented by also packaging by feature.
-
-#### Testability
-To make the internal implementations testable I can either use the IServiceCollection or create a separate factory.
-
-The advantage of this style over packaging by layer is that the tests for the _domain_ have no dependency any more on the _infrastructure_.
-
-#### Models
-The models live in the _domain_ layer. Both the _presentation_ and _infrastructure_ layers use these models.
-
-In this demo, I chose for additional models in the _presentation_ layer to provide an API that can easily be versioned.
-Considering how identical the models are, I can also use AutoMapper to map between the _web_ and _domain_ models.
-
 ### Package by Component
 Packaging component is similar to packaging by feature.The major difference is that the interfaces of the services are exposed. This means that they can be used directly instead of only via the _presentation_ layer. Most implementations I've seen of [Vertical Slice Architecture](https://jimmybogard.com/vertical-slice-architecture/) actually do something similar. They utilize a library like [Mediatr](https://github.com/jbogard/MediatR) to allow both controllers and other components to use their functionality.
+
+![architecture](./Component/architecture.png)
 
 This architecture has certain pros and cons as well as a few areas where the developers can make a choice.
 
