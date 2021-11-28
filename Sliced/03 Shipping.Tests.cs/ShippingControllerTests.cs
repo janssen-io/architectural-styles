@@ -9,7 +9,7 @@ namespace _03_Shipping.Tests.cs
         public void ShippingAProduct_CreatesAShipment()
         {
             // Arrange
-            var service = Factory.CreateController();
+            var service = Factory.CreateController(":memory:");
             var orderId = Guid.NewGuid();
 
             // Act

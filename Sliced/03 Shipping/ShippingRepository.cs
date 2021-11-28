@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using LiteDB;
 
 namespace _03_Shipping
 {
 	internal class ShippingRepository : IShippingRepository
 	{
-        private readonly Dictionary<Guid, Shipment> shipments = new();
+		private readonly ILiteDatabase _db;
 
 		internal ShippingRepository(ILiteDatabase db)
 		{
@@ -15,13 +15,15 @@ namespace _03_Shipping
         public Guid Create(Shipment shipment)
         {
 	        shipment.Id = Guid.NewGuid();
-            this.shipments[shipment.OrderId] = shipment;
+	        var shipments = _db.GetCollection<Shipment>();
+	        shipments.Insert(shipment);
             return shipment.Id;
         }
 
         public Shipment GetShipmentForOrder(Guid orderId)
         {
-	        return shipments[orderId];
+	        var shipments = _db.GetCollection<Shipment>();
+	        return shipments.FindOne(shipment => shipment.OrderId == orderId);
         }
 	}
 }

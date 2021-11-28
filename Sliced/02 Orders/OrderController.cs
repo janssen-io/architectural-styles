@@ -12,6 +12,14 @@ namespace _02_Orders
         private readonly IShippingController _shippingController;
         private readonly Dictionary<Guid, Order> orders = new();
 
+        // It's rare that controllers have dependencies on other controllers.
+        // A more common approach would be to use Mediatr.
+        // Then the dependency could also be inverted as this Order project
+        // would send out a 'OrderPlaced' event to which the Shipping project
+        // would listen and create a new shipment.
+        //
+        // In this showcase, I opted for the direct dependency, to keep the
+        // examples more alike.
         public OrderController(IShippingController shippingController)
         {
             _shippingController = shippingController;
