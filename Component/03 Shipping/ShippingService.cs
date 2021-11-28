@@ -8,25 +8,27 @@ namespace _03_Shipping
 {
     internal class ShippingService : IShippingService
     {
-        private readonly Dictionary<Guid, Shipment> shipments = new();
+        private readonly IShippingRepository _shippingRepository;
 
+        public ShippingService(IShippingRepository shippingRepository)
+        {
+            _shippingRepository = shippingRepository;
+        }
+        
         public Shipment Get(Guid orderId)
         {
-            return this.shipments[orderId];
+            return _shippingRepository.GetByOrderId(orderId);
         }
 
         public Guid Ship(Guid orderId)
         {
             var shipment =  new Shipment
             {
-                Id = Guid.NewGuid(),
                 OrderId = orderId,
                 Status = ShippingStatus.Requested,
             };
 
-            this.shipments[orderId] = shipment;
-
-            return shipment.Id;
+            return _shippingRepository.Ship(shipment);
         }
     }
 }

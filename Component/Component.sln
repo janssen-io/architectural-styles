@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02 Orders.Tests", "02 Order
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 Shipping", "03 Shipping\03 Shipping.csproj", "{872B4822-7109-4F8E-9DCC-99665F9DA7BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 Shipping.Tests", "03 Shipping.Tests.cs\03 Shipping.Tests.csproj", "{1A396DB0-3EEC-430C-A605-CBDD4143A127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 Shipping.Tests", "03 Shipping.Tests\03 Shipping.Tests.csproj", "{1A396DB0-3EEC-430C-A605-CBDD4143A127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

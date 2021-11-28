@@ -1,7 +1,10 @@
-﻿namespace _03_Shipping
+﻿using System;
+
+namespace _03_Shipping
 {
-	public interface IShippingRepository
+	internal interface IShippingRepository
 	{
-		
+		Guid Ship(Shipment shipment);
+		Shipment GetByOrderId(Guid orderId);
 	}
 }
