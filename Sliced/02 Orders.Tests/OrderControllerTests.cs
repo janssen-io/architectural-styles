@@ -1,6 +1,5 @@
 using _03_Shipping;
 using Moq;
-using System;
 using Xunit;
 
 namespace _02_Orders.Tests
@@ -11,7 +10,7 @@ namespace _02_Orders.Tests
         public void PlacingAnOrder_StoresTheOrder()
         {
             // Arrange
-            var shipper = new Mock<IShippingService>();
+            var shipper = new Mock<IShippingController>();
             var controller = new OrderController(shipper.Object);
 
             // Act
@@ -25,7 +24,7 @@ namespace _02_Orders.Tests
         public void PlacingAnOrder_ShipsIt()
         {
             // Arrange
-            var shipper = new Mock<IShippingService>();
+            var shipper = new Mock<IShippingController>();
             var controller = new OrderController(shipper.Object);
 
             // Act

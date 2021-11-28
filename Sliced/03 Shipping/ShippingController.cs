@@ -5,18 +5,23 @@ namespace _03_Shipping
 {
     [ApiController]
     [Route("[controller]")]
-    public class ShippingController
+    public class ShippingController : IShippingController
     {
-        private readonly IShippingService shippingService;
+        private readonly IShippingService _shippingService;
 
-        public ShippingController(IShippingService shippingService)
+        internal ShippingController(IShippingService shippingService)
         {
-            this.shippingService = shippingService;
+            this._shippingService = shippingService;
         }
 
         public Shipment Get(Guid orderId)
         {
-            return this.shippingService.Get(orderId);
+            return this._shippingService.Get(orderId);
+        }
+
+        public Guid Ship(Guid orderId)
+        {
+            return this._shippingService.Ship(orderId);
         }
     }
 }

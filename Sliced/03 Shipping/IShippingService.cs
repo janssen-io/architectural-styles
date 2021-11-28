@@ -2,7 +2,7 @@
 
 namespace _03_Shipping
 {
-    public interface IShippingService
+    internal interface IShippingService
     {
         Guid Ship(Guid orderId);
         Shipment Get(Guid orderId);

@@ -9,11 +9,11 @@ namespace _03_Shipping.Tests.cs
         public void ShippingAProduct_CreatesAShipment()
         {
             // Arrange
-            var service = Factory.CreateShippingService();
+            var service = Factory.CreateController();
             var orderId = Guid.NewGuid();
 
             // Act
-            var shipmentId = service.Ship(orderId);
+            var _ = service.Ship(orderId);
 
             // Assert
             var shipment = service.Get(orderId);

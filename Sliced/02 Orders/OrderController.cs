@@ -9,12 +9,12 @@ namespace _02_Orders
     [Route("[controller]")]
     public class OrderController
     {
+        private readonly IShippingController _shippingController;
         private readonly Dictionary<Guid, Order> orders = new();
-        private readonly IShippingService shippingService;
 
-        public OrderController(IShippingService shippingService)
+        public OrderController(IShippingController shippingController)
         {
-            this.shippingService = shippingService;
+            _shippingController = shippingController;
         }
 
         public Order Get(Guid orderId)
@@ -31,7 +31,7 @@ namespace _02_Orders
             };
 
             this.orders.Add(order.Id, order);
-            shippingService.Ship(order.Id);
+            _shippingController.Ship(order.Id);
 
             // alternatively, we could return the shipment id
             // but as this is the order slice, it feels more natural to return the order id
