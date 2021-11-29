@@ -1,3 +1,8 @@
+[Home](../README.md)  
+Next: [Hexagonal](../Hexagonal/README.md)
+
+---
+
 # Package by Layer
 
 This style packages the classes by their technological layer (Presentation, Services and Infrastructure).
@@ -33,3 +38,8 @@ Each layer only exposes their interfaces. As the interfaces are packaged by laye
 A bigger issue is that the models, services and repositories of the _Order_ subdomain can directly access the models, services and repositories of the _Shipping_ subdomain. This creates a tight coupling between these two subdomains. For example, the order service needs to create the shipment. The shipping service requests the entire order model, while it only needs the order ID.
 
 This solution displays these issues as it is a common pitfall. One could resolve them by moving responsibilities and thinking carefully about the data shared between services. The architectural style unfortunately does not aid the developer in these decisions.
+
+---
+
+[Home](../README.md)  
+Next: [Hexagonal](../Hexagonal/README.md)

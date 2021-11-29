@@ -1,3 +1,9 @@
+[Home](../README.md)  
+Previous: [Layered](../Layered/README.md)  
+Next: [Feature](../Sliced/README.md)
+
+---
+
 # Hexagonal
 
 The hexagonal style is similar to the package-by-layer style. It also prescribes three layers, usually named _Application_, _Core_ or _Domain_ and _Infrastructure_.
@@ -42,3 +48,9 @@ Like in the package-by-layer style, testing is easy as the repository interfaces
 
 ## Disadvantages
 Unfortunately, this style does not solve the lack of (enforced) encapsulation the package-by-layer style has. It is just as easy to create tightly-coupled components. For more information see the description of the [package-by-layer](../Layered/README.md) style.
+
+---
+
+[Home](../README.md)  
+Previous: [Layered](../Layered/README.md)  
+Next: [Feature](../Sliced/README.md)

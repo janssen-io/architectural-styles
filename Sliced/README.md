@@ -1,3 +1,9 @@
+[Home](../README.md)  
+Previous: [Hexagonal](../Hexagonal/README.md)  
+Next: [Component](../Component/README.md)
+
+---
+
 # Package by Feature
 
 The package-by-feature style is different from the package-by-layer and hexagonal styles.
@@ -53,3 +59,9 @@ Another approach is to use a static dependency analyzer (such as [NsDepCop](http
 Sharing logic without breaking encapsulation can only be done by creating a separate package on which both feature-packages depend. This is a common and decent approach, but slightly deviates from the idea that every package contains an application entry point (e.g., controller). I believe an application should not have to follow one single style of architecture. As long as it's clear to any contributor what style is used and how they can extend the application.
 
 One challenge with a shared library, is providing a solid public API while encapsulating the implementation.
+
+---
+
+[Home](../README.md)  
+Previous: [Hexagonal](../Hexagonal/README.md)  
+Next: [Component](../Component/README.md)

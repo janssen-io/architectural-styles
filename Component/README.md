@@ -1,3 +1,8 @@
+[Home](../README.md)  
+Previous: [Feature](../Sliced/README.md)
+
+---
+
 # Package by Component
 
 The package-by-component style is similar to the package-by-feature style.
@@ -22,3 +27,8 @@ One advantage over the package-by-feature style, is that services can easily be 
 
 ## Disadvantages
 In my opinion, the only disadvantage is the difficulty to test components that rely on 3rd party services such as databases or payment platforms. This drawback is already in described in [package-by-feature](../Sliced/README.md), so I won't go into further detail here.
+
+---
+
+[Home](../README.md)  
+Previous: [Feature](../Sliced/README.md)
