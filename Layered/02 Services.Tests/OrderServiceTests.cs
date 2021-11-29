@@ -59,7 +59,7 @@ namespace Services.Tests
 
             // Assert
             shippingRepo.Verify(repo => repo.Create(
-                It.Is<Infra.Shipment>(s => s.OrderId.Id == order.Id)));
+                It.Is<Infra.Shipment>(s => s.Order.Id == order.Id)));
         }
     }
 }

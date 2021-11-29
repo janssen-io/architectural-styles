@@ -5,7 +5,7 @@ namespace Infrastructure
 {
     public interface IShippingRepository
     {
-        void Create(Shipment shipment);
-        Shipment Get(Guid orderId);
+        Guid Create(Shipment shipment);
+        Shipment GetShipmentForOrder(Guid orderId);
     }
 }

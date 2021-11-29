@@ -1,22 +1,31 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using LiteDB;
 
 namespace Infrastructure
 {
     internal class ShippingRepository : IShippingRepository
     {
-        // Stores shipments by order id
-        private readonly Dictionary<Guid, Shipment> shipments = new();
+        private readonly ILiteDatabase _db;
 
-        public void Create(Shipment shipment)
+        internal ShippingRepository(ILiteDatabase db)
         {
-            this.shipments[shipment.OrderId.Id] = shipment;
+            _db = db;
+        }
+        
+        public Guid Create(Shipment shipment)
+        {
+            shipment.Id = Guid.NewGuid();
+            var shipments = _db.GetCollection<Shipment>();
+            shipments.Insert(shipment);
+            return shipment.Id;
         }
 
-        public Shipment Get(Guid orderId)
+        public Shipment GetShipmentForOrder(Guid orderId)
         {
-            return this.shipments[orderId];
+            var shipments = _db.GetCollection<Shipment>();
+            return shipments.FindOne(shipment => shipment.Order.Id == orderId);
         }
     }
 }

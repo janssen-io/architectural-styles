@@ -15,7 +15,7 @@ namespace Services
 
         public Shipment GetShipment(Order order)
         {
-            var shipment = this.shippingRepo.Get(order.Id);
+            var shipment = this.shippingRepo.GetShipmentForOrder(order.Id);
             return new Shipment
             {
                 Id = shipment.Id,
@@ -29,7 +29,7 @@ namespace Services
             var shipment = new Infrastructure.Models.Shipment
             {
                 Id = Guid.NewGuid(),
-                OrderId = new Infrastructure.Models.Order
+                Order = new Infrastructure.Models.Order
                 {
                     Id = order.Id,
                     TotalPrice = order.TotalPrice,

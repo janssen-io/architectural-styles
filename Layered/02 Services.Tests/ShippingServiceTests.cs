@@ -30,7 +30,7 @@ namespace Services.Tests
             // Assert
             shippingRepo.Verify(repo => repo.Create(
                 It.Is<Infra.Shipment>(s =>
-                    s.OrderId.Id == order.Id 
+                    s.Order.Id == order.Id 
                     && s.Status == Infra.ShippingStatus.Requested)));
         }
     }

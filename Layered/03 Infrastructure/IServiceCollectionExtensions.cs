@@ -4,11 +4,10 @@ namespace Infrastructure
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection Register(this IServiceCollection services)
+        public static void AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IShippingRepository, ShippingRepository>();
-            return services;
         }
     }
 }
