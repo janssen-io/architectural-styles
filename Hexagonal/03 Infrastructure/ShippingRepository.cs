@@ -2,22 +2,31 @@
 using _02_Domain.Models;
 using System;
 using System.Collections.Generic;
+using LiteDB;
 
 namespace _03_Infrastructure
 {
-    internal class ShippingRepository : IShippingRepository
-    {
-        // Stores shipments by order id
-        private readonly Dictionary<Guid, Shipment> shipments = new();
+	internal class ShippingRepository : IShippingRepository
+	{
+		private readonly ILiteDatabase _db;
 
-        public void Create(Shipment shipment)
+		internal ShippingRepository(ILiteDatabase db)
+		{
+			_db = db;
+		}
+        
+        public Guid Create(Shipment shipment)
         {
-            this.shipments[shipment.OrderId.Id] = shipment;
+	        shipment.Id = Guid.NewGuid();
+	        var shipments = _db.GetCollection<Shipment>();
+	        shipments.Insert(shipment);
+            return shipment.Id;
         }
 
-        public Shipment Get(Guid orderId)
+        public Shipment GetShipmentForOrder(Guid orderId)
         {
-            return this.shipments[orderId];
+	        var shipments = _db.GetCollection<Shipment>();
+	        return shipments.FindOne(shipment => shipment.Order.Id == orderId);
         }
-    }
+	}
 }

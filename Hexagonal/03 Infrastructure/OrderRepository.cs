@@ -7,11 +7,11 @@ namespace _03_Infrastructure
 {
     internal class OrderRepository : IOrderRepository
     {
-        private readonly Dictionary<Guid, Order> orders = new();
+        private readonly Dictionary<Guid, Order> _orders = new();
 
         public void Save(Order order)
         {
-            this.orders.Add(order.Id, order);
+            _orders.Add(order.Id, order);
         }
     }
 }

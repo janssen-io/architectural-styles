@@ -38,8 +38,8 @@ namespace _01_Web.Controllers
                 Id = shipment.Id,
                 OrderId = new Order
                 {
-                    Id = shipment.OrderId.Id,
-                    TotalPrice = shipment.OrderId.TotalPrice,
+                    Id = shipment.Order.Id,
+                    TotalPrice = shipment.Order.TotalPrice,
                 },
                 Status = (ShippingStatus)shipment.Status,
             };

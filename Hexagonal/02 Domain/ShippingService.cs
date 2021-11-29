@@ -14,7 +14,7 @@ namespace _02_Domain
 
         public Shipment GetShipment(Order order)
         {
-            var shipment = this.shippingRepo.Get(order.Id);
+            var shipment = this.shippingRepo.GetShipmentForOrder(order.Id);
             return shipment;
         }
 
@@ -23,7 +23,7 @@ namespace _02_Domain
             var shipment = new Shipment
             {
                 Id = Guid.NewGuid(),
-                OrderId = order,
+                Order = order,
                 Status = ShippingStatus.Requested
             };
 

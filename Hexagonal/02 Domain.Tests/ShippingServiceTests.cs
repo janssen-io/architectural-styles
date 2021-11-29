@@ -27,7 +27,7 @@ namespace _02_Domain.Tests
             // Assert
             shippingRepo.Verify(repo => repo.Create(
                 It.Is<Shipment>(s =>
-                    s.OrderId.Id == order.Id 
+                    s.Order.Id == order.Id 
                     && s.Status == ShippingStatus.Requested)));
         }
     }

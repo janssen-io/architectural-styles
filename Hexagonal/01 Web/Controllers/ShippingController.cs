@@ -33,7 +33,7 @@ namespace _01_Web.Controllers
                 Id = shipment.Id,
                 OrderId = new Order
                 {
-                    Id = shipment.OrderId.Id,
+                    Id = shipment.Order.Id,
                 },
                 Status = (ShippingStatus)shipment.Status,
             };

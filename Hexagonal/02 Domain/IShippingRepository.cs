@@ -5,7 +5,7 @@ namespace _02_Domain
 {
     public interface IShippingRepository
     {
-        void Create(Shipment shipment);
-        Shipment Get(Guid orderId);
+        Guid Create(Shipment shipment);
+        Shipment GetShipmentForOrder(Guid orderId);
     }
 }
